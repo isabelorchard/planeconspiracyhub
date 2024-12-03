@@ -1,0 +1,180 @@
+/* Overall page styling */
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+    font-family: monospace;
+    display: flex;
+    justify-content: center; /* Center the main container horizontally */
+    align-items: center;    /* Center the main container vertically */
+    min-height: 100vh;      /* Ensure the layout takes the full screen height */
+}
+
+/* Main outer container with neon blue outline */
+/* .custom-container {
+    border-width: 5px 20px;
+    border-style: solid;
+    border-color: #0000ff;
+    background-color: black;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+.container-fluid{
+    /* border-width: 5px;
+    border-style: solid; */
+    /* border-color: #0000ff;  */
+    padding: 20px;
+}
+
+._dash-global-error-container {
+    border-width: 5px;
+    border-style: solid;
+    border-color: #0000ff; 
+    padding: 20px;
+    margin: 10px auto;
+    background-color: #000000;
+}
+
+/* .container {
+    border-width: 5px;
+    border-style: solid;
+    border-color: #0000ff; 
+    padding: 20px;
+    margin: 10px auto;
+    background-color: #000000;
+} */
+
+/* Header styling */
+.header {
+    width: 100%;
+    text-align: center;
+    background-color: #000000;
+    padding: 5px;
+    height: 5px; /* Adjust the height */
+    display: flex;
+    color: white;
+    padding: 10px;
+    border: 2px solid;
+}
+
+.footer {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid;
+    text-align: center;
+    padding: 10px;
+}
+
+.card {
+    background-color: #000000; /* Black background inside cards */
+    color: white;
+    padding: 10px;
+}
+
+.bg-dark.text-white.card {
+    height: 1000px,
+}
+
+.CardBody {
+    height: 500px
+}
+
+.table {
+    background-color: #000000; /* Black background for tables */
+    color: white;
+}
+
+.scroll-area {
+    background-color: #000000;
+    color: white;
+    height: 500px;
+    overflow: auto;
+}
+
+.img-container {
+    border: 2px solid #00bfff; /* Neon blue outline for images */
+    background-color: #000000;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.mb-6 {
+    margin-bottom: 4rem; /* 64px */
+}
+
+.mb-7 {
+    margin-bottom: 6rem; /* 96px */
+}
+
+.mb-10 {
+    margin-bottom: 10rem; /* 96px */
+}
+
+.my-10 {
+    margin-top: 10rem; /* 160px */
+    margin-bottom: 10rem; /* 160px */
+}
+
+/* .green-button {
+    background-color: green;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none; /* Removes underline if used as a link */
+    /* text-decoration-color: #000000;
+    transition: background-color 0.3s;} /* Adds hover effect */
+
+.greenbutton {
+  background-color: #49f62d;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.greenbutton:hover {
+  background-color: #fff;
+}
+
+.greenbutton:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .greenbutton {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+
+.page_headings  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+    font-size: 34px;
+    border:1px solid black;
+    padding: 10px 200px;
+}
