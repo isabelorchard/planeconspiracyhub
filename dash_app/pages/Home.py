@@ -5,17 +5,20 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import plotly.express as px
+import os
 # from index import *
 
 
 
 
 # Load Disappeared Planes dataset
-df = pd.read_csv("/Users/Issy/Code/isabelorchard/dash_app/disappeared_complete.csv")
+path = os.path.dirname(os.path.dirname(__file__))
+df = pd.read_csv(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'disappeared_complete.csv'))
 
 dash.register_page(__name__, path='/')
 
 # Create the map figure
+
 fig = px.scatter_mapbox(
     df,
     lat="lat",
@@ -35,7 +38,7 @@ fig.update_layout(
 
 # KPI Calulations
 KPI_1 = df['date'].count() # nb of disappearances 
-KPI_2 = df['aboard_total'].sum() # nb of people missing 
+KPI_2 = round(df['aboard_total'].sum(), 0) # nb of people missing 
 KPI_3 = df['operator'].mode()[0] # most frequently missing plane by airline
 KPI_4 = df['country'].value_counts().idxmax() # most common country
 
@@ -44,14 +47,34 @@ KPI_4 = df['country'].value_counts().idxmax() # most common country
 layout = dbc.Container(
     fluid=False,
     children=[
-        # Header
-        # dbc.Row(
-        #     [
-        #     ],
-        #     className="bg-black py-2 text-white",
-        #     style={"fontSize": "16px", "height": "25px"},
-        # ),
-
+        dbc.Row(
+    [
+        # Title in the center
+        dbc.Col(
+            html.H1(
+                "Where Planes Go When They 'Disappear'",
+                className="text-center bg-black text-white py-3",
+            ),
+            width=9,  # Takes most of the space in the row
+            className="bg-black py-2 text-white",
+            style={"fontSize": "16px"},
+        ),
+        # Image in the far right corner
+        dbc.Col(
+            html.Img(
+                src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDhhZ2NuZjU2dWNieW94cDYyanJrbmZtNzUyZW93amY2eHh3Z2ZtZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/d3mlE7uhX8KFgEmY/giphy.gif",
+                style={
+                    "width": "200px",  # Small size
+                    "height": "90px",  # Small size
+                    "float": "right",  # Align to the far right
+                },
+            ),
+            width=3,  # Takes remaining space for alignment
+            className="bg-black",
+        ),
+    ],
+    className="align-items-center",  # Vertically center-aligns the content
+),
         # Main Content
         dbc.Row(
             [
@@ -70,7 +93,7 @@ layout = dbc.Container(
                                         id="industry-news-scroll",
                                         className="scroll-area text-white",
                                         style={
-                                            "height": "600px",
+                                            "height": "500px",
                                             "overflowY": "scroll",
                                             # "border": "1px solid #ccc",
                                             "padding": "10px",
@@ -83,7 +106,7 @@ layout = dbc.Container(
                                     )
                                 ]                                     
                             ),
-                            className="mb-2",
+                            className="mb-2 mt-5",
                         ),
                     ],
                     width=3,
@@ -94,10 +117,10 @@ layout = dbc.Container(
                     [
                         html.Div(
                             [
-                                html.H3(
-                                    "Poof, and they're gone",
-                                    className="text-center text-white mb-6",
-                                ),
+                                # html.H3(
+                                #     "Poof, and they're gone",
+                                #     className="text-center text-white mb-6",
+                                # ),
                                 dcc.Graph(figure=fig),  # Plane disappearances map
                             ],
                             className="text-center mt-5",
@@ -105,36 +128,6 @@ layout = dbc.Container(
                     ],
                     width=9,
                 ),
-
-                # # Right Column
-                # dbc.Col(
-                #     [
-                        # Aircraft Model Section
-                        # dbc.Card(
-                        #     dbc.CardBody(
-                        #         [
-                        #             html.H4(
-                        #                 "Aircraft Model Of The Week",
-                        #                 className="card-title text-white"
-                        #             ),
-                        #             html.Div(
-                        #                 id="aircraft-model-image",
-                        #                 children=[
-                        #                     html.Img(
-                        #                         src="images/vintage_plane.png",
-                        #                         alt="Aircraft Model",
-                        #                         className="img-fluid mx-auto d-block mt-3",
-                        #                         style={"maxWidth": "100%"},
-                        #                     )
-                        #                 ],
-                        #             ),
-                        #         ]
-                        #     ),
-                        #     className="mb-4",
-                        # ),
-        #             ],
-        #             width=3,
-        #         ),
             ],
             className="my-4",
         ),
@@ -149,8 +142,7 @@ layout = dbc.Container(
                             dbc.Card(
                                 dbc.CardBody(
                                     [
-                                        html.H5(KPI_1, className="card-title text-center"),
-                                        html.P("'disappeared' flights", className="text-center"),
+                                        html.H5(f"🔥 {KPI_1} Vanished Flights 🔥", className="card-title text-center"),
                                         # style={"display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center"},
                                     ]
                                 ),
@@ -163,8 +155,7 @@ layout = dbc.Container(
                             dbc.Card(
                                 dbc.CardBody(
                                     [
-                                        html.H5(KPI_2, className="card-title text-center"),
-                                        html.P("people missing 🕳🚶🏻‍♂️", className="text-center"),
+                                        html.H5(f" {KPI_2} Missing People 🕳🚶🏻‍♂️", className="card-title text-center"),
                                     ]
                                 ),
                                 className="bg-dark text-white",
@@ -176,8 +167,7 @@ layout = dbc.Container(
                             dbc.Card(
                                 dbc.CardBody(
                                     [
-                                        html.H5(KPI_3, className="card-title text-center"),
-                                        html.P("🇷🇺 🪆", className="text-center"),
+                                        html.H5(f"🇷🇺 {KPI_3} vanishing the most 🇷🇺 ", className="card-title text-center"),
                                     ]
                                 ),
                                 className="bg-dark text-white",
@@ -189,8 +179,7 @@ layout = dbc.Container(
                             dbc.Card(
                                 dbc.CardBody(
                                     [
-                                        html.H5(KPI_4, className="card-title text-center"),
-                                        html.P("👹", className="text-center"),
+                                        html.H5(f"Mostly in the {KPI_4} 👹", className="card-title text-center"),
                                     ]
                                 ),
                                 className="bg-dark text-white",
@@ -225,7 +214,7 @@ layout = dbc.Container(
 )
 def update_news(n_intervals):
     print("Callback triggered")
-    news_items = pd.read_csv('/Users/Issy/Code/isabelorchard/dash_app/google_news_compact .csv')
+    news_items = pd.read_csv(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'google_news_compact .csv'))
     print(news_items)
     
     
