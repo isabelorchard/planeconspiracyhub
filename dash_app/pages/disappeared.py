@@ -60,18 +60,20 @@ layout = html.Div(
                     id="incident-details",
                     style={
                         # "marginTop": "5px",
+                        "font-size": "25px",
                         "textAlign": "center",
                         "top": "50px"
                         }
                 ),
                 html.H5(
-                    "based on sumbissions from the tinfoil hat community",
+                    "Sources based on sumbissions from the tinfoil hat community",
                     className="text-center",
                     style={
                         "marginTop": "auto",
                         "textAlign": "center",
-                        "bottom": "50px",
-                        "font-size": "10px"
+                        "bottom": "20px",
+                        "font-size": "14px",
+                        "color": "red"
                         }
                 )
             ]
@@ -108,15 +110,15 @@ def display_incident_details(click_data):
     # Return formatted details
     return [
         html.P(f"Date: {date}", style={"fontSize": "18px"}),
-        html.P(f"Aboard Total: {aboard_total}", style={"fontSize": "18px"}),
-        html.P(f"Flight Type: {flight_type}", style={"fontSize": "18px"}),
+        # html.P(f"Aboard Total: {aboard_total}", style={"fontSize": "18px"}),
+        # html.P(f"Flight Type: {flight_type}", style={"fontSize": "18px"}),
         html.P(f"Narrative: {summary_x}", style={"fontSize": "18px"}),
         html.H1(".", style={"color": "black"}),
         html.H1(".", style={"color": "black"}),
         html.H1(".", style={"color": "black"}),
         html.H1(".", style={"color": "black"}),
         html.P(
-            f"What We Think: {real_reason}",
+            f"What Our Sources Say: {real_reason}",
             style={
                 "fontSize": "18px",
                 "marginTop": "auto",
